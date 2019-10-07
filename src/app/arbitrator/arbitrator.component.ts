@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { Logs } from 'selenium-webdriver';
 import { isNumber } from 'util';
-import { PlayerTwoComponent } from '../player-two/player-two.component';
 import { PlayerOneComponent } from '../player-one/player-one.component';
+import { PlayerTwoComponent } from '../player-two/player-two.component';
 
 @Component({
   selector: 'app-arbitrator',
@@ -14,7 +14,6 @@ export class ArbitratorComponent implements OnChanges {
   // tslint:disable-next-line: prefer-inline-decorator
   @ViewChild(PlayerTwoComponent) PlayerTwo: PlayerTwoComponent;
   @ViewChild(PlayerOneComponent) playerOne: PlayerOneComponent;
-  @Input() myMode;
 
   constructor(public viewContainerRef: ViewContainerRef) {
     this.scoreOne = 0;
@@ -33,8 +32,6 @@ export class ArbitratorComponent implements OnChanges {
   count: number;
 
   ngOnChanges(changes: SimpleChanges) {
-
-    // console.log(changes.myMode.currentValue);
 
   }
 
@@ -150,7 +147,7 @@ export class ArbitratorComponent implements OnChanges {
   winnerIcon(value) {
     // tslint:disable-next-line: max-line-length
     const select = this.viewContainerRef.element.nativeElement.children[0].children[1].children[0].children[0].children[1];
-    // console.log(select);
+
     this.resetWinnerIcon();
     if (value === 0) {
       // égalité
@@ -168,7 +165,7 @@ export class ArbitratorComponent implements OnChanges {
       // +1 for player Two
       this.scoreTwo++;
     }
-    // console.log(select);
+
   }
 
   resetWinnerIcon() {
@@ -206,7 +203,7 @@ export class ArbitratorComponent implements OnChanges {
          return false;
        }
       } else {
-        // console.log('we got a winner ');
+
         if (this.scoreOne === 3) {
           // Winner Player One
           select.children[2].classList.remove('none');

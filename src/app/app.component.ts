@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'Shifumi';
   nbr: number;
   mode: string;
-  
+
   constructor(public viewContainerRef: ViewContainerRef) {
 
   }
@@ -18,15 +18,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
 
-  }
-
-  choiceMode(value) {
-      if (value === 1) {
-        // random Mode
-        this.mode = 'random';
-      } else {
-        this.mode = 'choice';
-      }
   }
 
 }
