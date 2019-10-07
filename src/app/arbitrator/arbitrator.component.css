@@ -1,0 +1,48 @@
+.customTitle{
+    font-family: 'Notable', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.customTAC{
+    text-align: center;
+}
+.customPos{
+    width: 50%;
+    position: absolute;
+    top: 380px;
+    right: 90px;
+}
+
+.bg-pop-up{
+    /* background-color: green; */
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    -webkit-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.75);
+    
+}
+.customTitlePop{
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 1.3rem;
+    font-family: 'Permanent Marker', cursive;
+}
+.customDivider{
+border-top: 2px solid lightgray;
+
+}
+.customPosPop{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.customChrono{
+    font-size: 6rem;
+    color: gray;
+    position: absolute;
+    bottom: -330px;
+    right: 150px;
+    text-align: center;
+}

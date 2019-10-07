@@ -1,27 +1,16 @@
-# Shifumi
+#Shifumi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+#1.Comment installer le projet.
 
-## Development server
+    Il vous faut tout d’abord avoir “npm” ainsi que “Angular Cli” pour cela rien de plus simple il vous suffit d’installer node js qui contient Npm, pour cela rendez-vous sur le site de node js et installez la version stable. 
+Ensuite ouvrez un terminal et tapez “npm install -g angular-cli”. Une fois cela fait aller dans le dossier de du projet angular avec les commandes, ”cd  ..” qui permet un retour en arrière dans les racines des fichiers, 
+”cd nom-dossier” qui permet contrairement à celle d’avant d’avancée dans les dossiers. Pour voir les fichiers auxquels on peut avoir accès on peut utiliser la commande “ls”.
+    Une fois dans le dossier de votre projet vous pouvez faire un “ng serve” qui permet de lancer le serveur.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#2. Comment Jouer ?  
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    Pour cela rien de plus simple il vous suffit d'appuyer sur le bouton nouveau manche qui permet de lancer comme dit sur le bouton une nouvelle partie où vous pourrez jouer avec un adversaire.
+Pour cela vous aurez 3 secondes pour réfléchir à votre choix ( Pierre, papier, ciseau). 
+Une fois ce compte à rebours fini vous devez immédiatement cliquer sur le bouton de votre choix (car en effet une fois cliquez sur le bouton votre choix est visible par l’autre joueur, et la fonction qui compare les résultats se lance 5 secondes après).
+Une fois la fonction lancer elle ajoute un point au score du joueur qui a gagné ou montre le signe égal s'il y a égalité. 
+    Le vainqueur est le premier arrivé à 3 points.

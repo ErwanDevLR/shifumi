@@ -1,0 +1,8 @@
+.customBtn{
+    font-family: 'Notable', sans-serif;
+}
+.btn-success:hover{
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
