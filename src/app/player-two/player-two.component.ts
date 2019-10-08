@@ -26,7 +26,6 @@ export class PlayerTwoComponent implements OnChanges {
   @Input() ChoiceTwo;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
 
     this.isChange(changes, 1);
 
