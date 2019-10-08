@@ -1,13 +1,14 @@
 // tslint:disable-next-line: max-line-length
-import { Component, EventEmitter,  OnInit, Output, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter,  OnInit, Output, ViewContainerRef, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { Logs } from 'selenium-webdriver';
+import { ChangeDetectorStatus } from '@angular/core/src/change_detection/constants';
 
 @Component({
   selector: 'app-player-two',
   templateUrl: './player-two.component.html',
   styleUrls: ['./player-two.component.css']
 })
-export class PlayerTwoComponent implements OnInit {
+export class PlayerTwoComponent implements OnChanges {
   nbr: number;
   nbChild: number;
   value: number;
@@ -15,13 +16,31 @@ export class PlayerTwoComponent implements OnInit {
   // papier  = 2
   // ciseaux = 3
 
-  constructor(public viewContainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) { 
+    this.time = 3;
+  }
+  time: number;
 
   @Output() readonly playerTwo: EventEmitter<any> = new EventEmitter();
+  @Input() ResetChoiceTwo;
+  @Input() ChoiceTwo;
 
-  ngOnInit() {
-    // this.choiceTwo();
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+
+    this.isChange(changes, 1);
+
   }
+
+  isChange(changes, value) {
+    if (value === 1) {
+      if (changes.ResetChoiceTwo.currentValue === true) {
+
+        this.resetChoice();
+      }
+    }
+  }
+
   resetChoice() {
      // tslint:disable-next-line: max-line-length
      const choice =  this.viewContainerRef.element.nativeElement.children[0].children[1];

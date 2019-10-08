@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit, ViewContainerRef, Output, EventEmitter } from '@angular/core';
+import { Component, Injectable, OnInit, ViewContainerRef, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-player-one',
@@ -6,7 +6,7 @@ import { Component, Injectable, OnInit, ViewContainerRef, Output, EventEmitter }
   styleUrls: ['./player-one.component.css']
 })
 
-export class PlayerOneComponent implements OnInit {
+export class PlayerOneComponent implements OnChanges {
 
   nbr: number;
   nbChild: number;
@@ -17,10 +17,18 @@ export class PlayerOneComponent implements OnInit {
   constructor(public viewContainerRef: ViewContainerRef) { }
 
   @Output() readonly playerOne: EventEmitter<any> = new EventEmitter();
+  @Output() readonly isValue: EventEmitter<any> = new EventEmitter();
+  @Input() ResetChoiceOne;
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+
+    if (changes.ResetChoiceOne.currentValue === true) {
+
+      this.resetChoice();
+    }
 
   }
+
   resetChoice() {
      // tslint:disable-next-line: max-line-length
      const choice =  this.viewContainerRef.element.nativeElement.children[0].children[1];
@@ -57,6 +65,7 @@ export class PlayerOneComponent implements OnInit {
     choice.children[this.value].classList.remove('none');
 
     this.playerOne.emit(this.value);
+    this.isValue.emit(true);
   }
 
 }

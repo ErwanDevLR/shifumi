@@ -88,7 +88,8 @@
         <div class="card-footer">
           <h1 class="card-title">{{ scoreOne }} : {{ scoreTwo }}</h1>
           <button (click)="setScoreTo0()" class="btn customBtn ml-1 btn-danger">Reset Score</button>
-          <button (click)="chronoFirst()" class="btn customBtn customPos ml-1 btn-primary">Lancez le Choix de l'ordinateur</button>
+          <h1 class="customTitleChoice">Faite votre Choix</h1>
+          <button (click)="chronoFirst()" class="btn customBtn customPos ml-1 btn-primary disabled">Lancez le Choix de l'ordinateur</button>
           <h1 class="customChrono" >{{(time > 0) ? time : "Go !"}}</h1>
         </div>
       </div>
@@ -97,9 +98,9 @@
 </div>
 <div class="row">
   <div class="col-md-5 customTAC">
-    <app-player-one (playerOne)="getChoiceOne($event)"></app-player-one>
+    <app-player-one (playerOne)="getChoiceOne($event)" (isValue)="isValueSend($event)" [ResetChoiceOne]="isTrueVal"></app-player-one>
   </div>
   <div class="col-md-5 offset-md-2 customTAC">
-    <app-player-two (playerTwo)="getChoiceTwo($event)"></app-player-two>
+    <app-player-two (playerTwo)="getChoiceTwo($event)" [ResetChoiceTwo]="isTrueVal" [ChoiceTwo]="ValChoice"></app-player-two>
   </div>
 </div>
