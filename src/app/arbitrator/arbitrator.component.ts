@@ -194,7 +194,6 @@ export class ArbitratorComponent implements OnChanges {
           console.log('reset');
           this.resetWinnerIcon();
           this.isTrue(0);
-          this.isTrueChoice(0);
           this.disableOrdinateurChoice(0);
           clearInterval(timer3);
         }

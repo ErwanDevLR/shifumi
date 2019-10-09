@@ -16,10 +16,7 @@ export class PlayerTwoComponent implements OnChanges {
   // papier  = 2
   // ciseaux = 3
 
-  constructor(public viewContainerRef: ViewContainerRef) { 
-    this.time = 3;
-  }
-  time: number;
+  constructor(public viewContainerRef: ViewContainerRef) {}
 
   @Output() readonly playerTwo: EventEmitter<any> = new EventEmitter();
   @Input() ResetChoiceTwo;
