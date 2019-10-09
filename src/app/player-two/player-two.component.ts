@@ -23,7 +23,6 @@ export class PlayerTwoComponent implements OnChanges {
 
   @Output() readonly playerTwo: EventEmitter<any> = new EventEmitter();
   @Input() ResetChoiceTwo;
-  @Input() ChoiceTwo;
 
   ngOnChanges(changes: SimpleChanges) {
 
