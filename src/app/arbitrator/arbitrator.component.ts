@@ -48,9 +48,11 @@ export class ArbitratorComponent implements OnChanges {
     if (test === 1) {
       btn.classList.remove('disabled');
       selecteur.classList.add('none');
+
     } else {
       btn.classList.add('disabled');
       selecteur.classList.remove('none');
+
     }
   }
 
