@@ -1,7 +1,5 @@
 // tslint:disable-next-line: max-line-length
-import { Component, EventEmitter,  OnInit, Output, ViewContainerRef, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { Logs } from 'selenium-webdriver';
-import { ChangeDetectorStatus } from '@angular/core/src/change_detection/constants';
+import { Component, OnChanges,  SimpleChanges , ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-player-two',
@@ -18,12 +16,7 @@ export class PlayerTwoComponent implements OnChanges {
 
   constructor(public viewContainerRef: ViewContainerRef) {}
 
-  @Output() readonly playerTwo: EventEmitter<any> = new EventEmitter();
-  @Input() ResetChoiceTwo;
-
   ngOnChanges(changes: SimpleChanges) {
-
-    this.isChange(changes, 1);
 
   }
 
@@ -71,7 +64,7 @@ export class PlayerTwoComponent implements OnChanges {
     // display the choice of the player
     choice.children[this.value].classList.remove('none');
 
-    this.playerTwo.emit(this.value);
+    // launch value of player two
 
   }
 

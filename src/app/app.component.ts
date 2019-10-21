@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component,  OnInit,  ViewContainerRef } from '@angular/core';
+
 import { ArbitratorComponent } from './arbitrator/arbitrator.component';
+
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
-
   }
 
 }

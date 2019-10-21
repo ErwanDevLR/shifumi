@@ -1,21 +1,21 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import { Logs } from 'selenium-webdriver';
+// tslint:disable-next-line: max-line-length
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { isNumber } from 'util';
-import { PlayerOneComponent } from '../player-one/player-one.component';
-import { PlayerTwoComponent } from '../player-two/player-two.component';
+import { ChoiceOne } from '../models/ChoiceOne';
+
 
 @Component({
   selector: 'app-arbitrator',
   templateUrl: './arbitrator.component.html',
   styleUrls: ['./arbitrator.component.css']
 })
-export class ArbitratorComponent implements OnChanges {
+export class ArbitratorComponent implements OnInit {
 
-  // tslint:disable-next-line: prefer-inline-decorator
-  @ViewChild(PlayerTwoComponent) playerTwo: PlayerTwoComponent;
-  @Input() myMode;
+  constructor(public viewContainerRef: ViewContainerRef,
+              private readonly store: Store) {
 
-  constructor(public viewContainerRef: ViewContainerRef) {
     this.scoreOne = 0;
     this.scoreTwo = 0;
     this.time = 3;
@@ -23,6 +23,8 @@ export class ArbitratorComponent implements OnChanges {
     this.count = 3;
     this.isTrueVal = false;
     this.ValChoice = false;
+
+    this.choiceOnes = this.store.select(state => state.choiceOnes.choiceOnes)
    }
 
   scoreOne: number;
@@ -35,7 +37,9 @@ export class ArbitratorComponent implements OnChanges {
   isTrueVal: boolean;
   ValChoice: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  choiceOnes: Observable<ChoiceOne>;
+
+  ngOnInit() {
 
   }
 
@@ -67,7 +71,8 @@ export class ArbitratorComponent implements OnChanges {
           this.time--;
         } else if (this.time === 0) {
           this.chronoSecond();
-          this.playerTwo.choiceTwo();
+
+          // launche choice of player Two
           // this.isTrueChoice(1);
           clearInterval(timer1);
           }
@@ -86,36 +91,6 @@ export class ArbitratorComponent implements OnChanges {
         clearInterval(timer2);
           }
     }, 1000);
-  }
-
-  getChoiceOne(event) {
-
-    this.valueOne = event;
-
-  }
-  getChoiceTwo(event) {
-
-    this.valueTwo = event;
-  }
-
-  isTrue(value) {
-    // tslint:disable-next-line: prefer-conditional-expression
-    if (value === 1) {
-      this.isTrueVal = true;
-    } else {
-      this.isTrueVal = false;
-    }
-
-  }
-
-  isTrueChoice(value) {
-    // tslint:disable-next-line: prefer-conditional-expression
-    if (value === 1) {
-      this.ValChoice = true;
-    } else {
-      this.isTrueVal = false;
-    }
-
   }
 
   isValueSend(event) {
@@ -194,8 +169,11 @@ export class ArbitratorComponent implements OnChanges {
           this.count--;
         } else if (this.count === 0) {
           console.log('reset');
+
+          console.log(this.choiceOnes);
+
           this.resetWinnerIcon();
-          this.isTrue(0);
+          // Launch reset of player two choice
           this.disableOrdinateurChoice(0);
           clearInterval(timer3);
         }
@@ -208,7 +186,7 @@ export class ArbitratorComponent implements OnChanges {
     const select = this.viewContainerRef.element.nativeElement.children[0].children[1].children[0].children[0].children[1];
 
     this.resetWinnerIcon();
-    this.isTrue(1);
+   // Launch reset of player two choice
     if (value === 0) {
       // égalité
       select.children[2].classList.remove('none');
@@ -235,7 +213,7 @@ export class ArbitratorComponent implements OnChanges {
     for (let x = 0; x < 3; x++) {
       select.children[x].classList.add('none');
     }
-    this.isTrue(1);
+    // Launch reset of player two choice
   }
 
   setScoreTo0() {

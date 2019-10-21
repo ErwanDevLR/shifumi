@@ -1,4 +1,8 @@
-import { Component, Injectable, OnInit, ViewContainerRef, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+// tslint:disable-next-line: max-line-length
+import { Component, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { AddChoiceOne } from '../actions/choiceOne.action';
+
 
 @Component({
   selector: 'app-player-one',
@@ -14,21 +18,15 @@ export class PlayerOneComponent implements OnChanges {
   // pierre  = 1
   // papier  = 2
   // ciseaux = 3
-  constructor(public viewContainerRef: ViewContainerRef) { }
-
-  @Output() readonly playerOne: EventEmitter<any> = new EventEmitter();
-  @Output() readonly isValue: EventEmitter<any> = new EventEmitter();
-  @Input() ResetChoiceOne;
+  constructor(public viewContainerRef: ViewContainerRef,
+              private readonly store: Store) { }
 
   ngOnChanges(changes: SimpleChanges) {
-
-    if (changes.ResetChoiceOne.currentValue === true) {
-
-      this.resetChoice();
-    }
-
   }
 
+  addChoiceOne(value){
+    this.store.dispatch(new AddChoiceOne({ value }));
+  }
   resetChoice() {
      // tslint:disable-next-line: max-line-length
      const choice =  this.viewContainerRef.element.nativeElement.children[0].children[1];
@@ -64,8 +62,8 @@ export class PlayerOneComponent implements OnChanges {
     // display the choice of the player
     choice.children[this.value].classList.remove('none');
 
-    this.playerOne.emit(this.value);
-    this.isValue.emit(true);
+    this.addChoiceOne(3);
+
   }
 
 }
