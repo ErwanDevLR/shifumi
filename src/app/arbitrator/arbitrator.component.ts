@@ -22,7 +22,6 @@ export class ArbitratorComponent implements OnChanges {
     this.count = 3;
     this.isTrueVal = false;
     this.ValChoice = false;
-    this.xvar = 1;
 
     this.choiceOnes = this.store.select(state => state.choiceOne.choiceOnes);
    }
@@ -36,14 +35,11 @@ export class ArbitratorComponent implements OnChanges {
   count: number;
   isTrueVal: boolean;
   ValChoice: boolean;
-  choice: Array<number>;
-  xvar: number;
 
   choiceOnes: Observable<ChoiceOne>;
 
   ngOnChanges(changes: SimpleChanges) {
 
-  this.setScoreTo0();
   }
 
   disableOrdinateurChoice(test) {
@@ -220,20 +216,17 @@ export class ArbitratorComponent implements OnChanges {
   }
 
   setScoreTo0() {
-    // this.scoreOne = 0;
-    // this.scoreTwo = 0;
+    this.scoreOne = 0;
+    this.scoreTwo = 0;
 
-    // // tslint:disable-next-line: max-line-length
-    // const select = this.viewContainerRef.element.nativeElement.children[0].children[0].children[0].children[0];
+    // tslint:disable-next-line: max-line-length
+    const select = this.viewContainerRef.element.nativeElement.children[0].children[0].children[0].children[0];
 
-    // for (let x = 2; x < 4; x++) {
-    //  select.children[x].classList.add('none');
-    // }
+    for (let x = 2; x < 4; x++) {
+     select.children[x].classList.add('none');
+    }
 
-    this.choiceOnes.forEach(element => {
-      this.choice[this.xvar] = element.value;
-      this.xvar = this.xvar + 1;
-    });
+    console.log();
   }
 
   verif(mode: number) {
