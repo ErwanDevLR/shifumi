@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PlayerOneComponent } from './player-one/player-one.component';
 import { PlayerTwoComponent } from './player-two/player-two.component';
 import { ArbitratorComponent } from './arbitrator/arbitrator.component';
+import { ChoiceOneState } from 'src/app/state/choiceOne.state';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ArbitratorComponent } from './arbitrator/arbitrator.component';
     BrowserModule,
     AppRoutingModule,
     NgxsModule.forRoot([
-
+      ChoiceOneState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),

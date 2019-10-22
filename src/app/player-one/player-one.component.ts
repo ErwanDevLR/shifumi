@@ -24,7 +24,7 @@ export class PlayerOneComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
   }
 
-  addChoiceOne(value){
+  addChoiceOne(value) {
     this.store.dispatch(new AddChoiceOne({ value }));
   }
   resetChoice() {
@@ -62,7 +62,7 @@ export class PlayerOneComponent implements OnChanges {
     // display the choice of the player
     choice.children[this.value].classList.remove('none');
 
-    this.addChoiceOne(3);
+    this.addChoiceOne(this.value);
 
   }
 

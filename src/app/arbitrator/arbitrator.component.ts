@@ -1,17 +1,16 @@
 // tslint:disable-next-line: max-line-length
-import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Component, Input, ViewChild, ViewContainerRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { isNumber } from 'util';
-import { ChoiceOne } from '../models/ChoiceOne';
-
+import { ChoiceOne } from '../models/ChoiceOne.model';
 
 @Component({
   selector: 'app-arbitrator',
   templateUrl: './arbitrator.component.html',
   styleUrls: ['./arbitrator.component.css']
 })
-export class ArbitratorComponent implements OnInit {
+export class ArbitratorComponent implements OnChanges {
 
   constructor(public viewContainerRef: ViewContainerRef,
               private readonly store: Store) {
@@ -23,8 +22,9 @@ export class ArbitratorComponent implements OnInit {
     this.count = 3;
     this.isTrueVal = false;
     this.ValChoice = false;
+    this.xvar = 1;
 
-    this.choiceOnes = this.store.select(state => state.choiceOnes.choiceOnes)
+    this.choiceOnes = this.store.select(state => state.choiceOne.choiceOnes);
    }
 
   scoreOne: number;
@@ -36,11 +36,14 @@ export class ArbitratorComponent implements OnInit {
   count: number;
   isTrueVal: boolean;
   ValChoice: boolean;
+  choice: Array<number>;
+  xvar: number;
 
   choiceOnes: Observable<ChoiceOne>;
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
 
+  this.setScoreTo0();
   }
 
   disableOrdinateurChoice(test) {
@@ -217,15 +220,20 @@ export class ArbitratorComponent implements OnInit {
   }
 
   setScoreTo0() {
-    this.scoreOne = 0;
-    this.scoreTwo = 0;
+    // this.scoreOne = 0;
+    // this.scoreTwo = 0;
 
-    // tslint:disable-next-line: max-line-length
-    const select = this.viewContainerRef.element.nativeElement.children[0].children[0].children[0].children[0];
+    // // tslint:disable-next-line: max-line-length
+    // const select = this.viewContainerRef.element.nativeElement.children[0].children[0].children[0].children[0];
 
-    for (let x = 2; x < 4; x++) {
-     select.children[x].classList.add('none');
-    }
+    // for (let x = 2; x < 4; x++) {
+    //  select.children[x].classList.add('none');
+    // }
+
+    this.choiceOnes.forEach(element => {
+      this.choice[this.xvar] = element.value;
+      this.xvar = this.xvar + 1;
+    });
   }
 
   verif(mode: number) {

@@ -104,3 +104,7 @@
     <app-player-two ></app-player-two>
   </div>
 </div>
+
+<span *ngFor="let choice of choiceOnes | async">
+  <p>{{ choice.value }}</p>
+</span>

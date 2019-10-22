@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { AddChoiceOne } from '../actions/choiceOne.action';
-import { ChoiceOne } from '../models/ChoiceOne';
+import { ChoiceOne } from '../models/ChoiceOne.model';
 
 export class ChoiceOneStateModel {
     choiceOnes: ChoiceOne[];
@@ -12,7 +12,7 @@ export class ChoiceOneStateModel {
         choiceOnes: []
     }
 })
-export class UserState {
+export class ChoiceOneState {
 
     // tslint:disable-next-line: prefer-inline-decorator
     @Selector()
@@ -22,7 +22,7 @@ export class UserState {
 
     // tslint:disable-next-line: prefer-inline-decorator
     @Action(AddChoiceOne)
-    add({getState, patchState }: StateContext<ChoiceOneStateModel>, { payload }: ChoiceOne) {
+    add({getState, patchState }: StateContext<ChoiceOneStateModel>, { payload }: AddChoiceOne) {
         const state = getState();
         patchState({
             choiceOnes: [...state.choiceOnes, payload]

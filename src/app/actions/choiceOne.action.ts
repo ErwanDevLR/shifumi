@@ -1,4 +1,4 @@
-import { ChoiceOne } from '../models/ChoiceOne';
+import { ChoiceOne } from '../models/ChoiceOne.model';
 
 export class AddChoiceOne {
     static readonly type = '[ChoiceOne] Add';
