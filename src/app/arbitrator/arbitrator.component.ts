@@ -3,7 +3,6 @@ import { Component, Input, ViewChild, ViewContainerRef, OnChanges, SimpleChanges
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { isNumber } from 'util';
-import { ChoiceOne } from '../models/ChoiceOne.model';
 
 @Component({
   selector: 'app-arbitrator',
@@ -22,8 +21,11 @@ export class ArbitratorComponent implements OnChanges {
     this.count = 3;
     this.isTrueVal = false;
     this.ValChoice = false;
+   }
 
-    this.choiceOnes = this.store.select(state => state.choiceOne.choiceOnes);
+   ngOnInit() {
+
+    this.choiceOnes$ = this.store.select(state => state.choiceOne.choiceOnes);
    }
 
   scoreOne: number;
@@ -36,7 +38,7 @@ export class ArbitratorComponent implements OnChanges {
   isTrueVal: boolean;
   ValChoice: boolean;
 
-  choiceOnes: Observable<ChoiceOne>;
+  choiceOnes$: Observable<number>;
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -169,7 +171,7 @@ export class ArbitratorComponent implements OnChanges {
         } else if (this.count === 0) {
           console.log('reset');
 
-          console.log(this.choiceOnes);
+          // console.log(this.choiceOnes$);
 
           this.resetWinnerIcon();
           // Launch reset of player two choice

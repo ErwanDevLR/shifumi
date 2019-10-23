@@ -1,7 +1,7 @@
 // tslint:disable-next-line: max-line-length
 import { Component, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AddChoiceOne } from '../actions/choiceOne.action';
+import { AddChoiceOne } from '../store/actions/choiceOne.action';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class PlayerOneComponent implements OnChanges {
   }
 
   addChoiceOne(value) {
-    this.store.dispatch(new AddChoiceOne({ value }));
+    this.store.dispatch(new AddChoiceOne(value));
   }
   resetChoice() {
      // tslint:disable-next-line: max-line-length

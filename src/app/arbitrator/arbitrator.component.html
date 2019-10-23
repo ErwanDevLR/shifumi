@@ -105,6 +105,8 @@
   </div>
 </div>
 
-<span *ngFor="let choice of choiceOnes | async">
-  <input type="text" value="{{ choice.value }}">
-</span>
+<!-- <span *ngFor="let choice of choiceOnes | async"> -->
+  <!-- <input type="text" value="{{ choice.value }}"> -->
+<!-- </span> -->
+
+{{ choiceOnes$ | async }}
