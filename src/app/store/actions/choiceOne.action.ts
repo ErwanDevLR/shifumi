@@ -4,3 +4,9 @@ export class AddChoiceOne {
 
     constructor(public payload: number) {}
 }
+
+export class AddChoiceTwo {
+    static readonly type = '[ChoiceTwo] Add';
+
+    constructor(public payload: number) {}
+}

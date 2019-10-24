@@ -3,3 +3,7 @@
 export class ChoiceOneStateModel {
     choiceOnes: number;
 }
+
+export class ChoiceTwoStateModel {
+    choiceTwo: number;
+}

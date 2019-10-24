@@ -1,5 +1,7 @@
 // tslint:disable-next-line: max-line-length
-import { Component, OnChanges,  SimpleChanges , ViewContainerRef } from '@angular/core';
+import { Component, OnChanges,  SimpleChanges , ViewContainerRef, Input } from '@angular/core';
+import { AddChoiceTwo } from '../store/actions/choiceOne.action';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-player-two',
@@ -14,10 +16,16 @@ export class PlayerTwoComponent implements OnChanges {
   // papier  = 2
   // ciseaux = 3
 
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  constructor(public viewContainerRef: ViewContainerRef,
+              private readonly store: Store) {}
+
+  @Input()isValue: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
-
+    console.log(this.isValue + ' input');
+    if (this.isValue) {
+      this.choiceTwo();
+    }
   }
 
   isChange(changes, value) {
@@ -38,10 +46,17 @@ export class PlayerTwoComponent implements OnChanges {
      }
   }
 
+  addChoiceTwo(value) {
+    this.store.dispatch(new AddChoiceTwo(value));
+  }
+
   choiceTwo() {
 
     // tslint:disable-next-line: max-line-length
     const choice =  this.viewContainerRef.element.nativeElement.children[0].children[1];
+
+    console.log(choice);
+
     const gene = Math.floor(Math.random() * 3);
     // tslint:disable-next-line: prefer-conditional-expression
     if (gene === 0) {
@@ -59,13 +74,13 @@ export class PlayerTwoComponent implements OnChanges {
     }
 
     // reset the previous choice
-    this.resetChoice();
+    // this.resetChoice();
 
     // display the choice of the player
     choice.children[this.value].classList.remove('none');
 
     // launch value of player two
-
+    this.addChoiceTwo(this.value);
   }
 
 }

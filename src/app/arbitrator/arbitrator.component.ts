@@ -1,15 +1,16 @@
 // tslint:disable-next-line: max-line-length
-import { Component, Input, ViewChild, ViewContainerRef, OnChanges, SimpleChanges } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
+import { Component, Input, OnInit, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { isNumber } from 'util';
+import { ChoiceOneState } from '../store/state/choiceOne.state';
 
 @Component({
   selector: 'app-arbitrator',
   templateUrl: './arbitrator.component.html',
   styleUrls: ['./arbitrator.component.css']
 })
-export class ArbitratorComponent implements OnChanges {
+export class ArbitratorComponent implements OnInit {
 
   constructor(public viewContainerRef: ViewContainerRef,
               private readonly store: Store) {
@@ -19,13 +20,8 @@ export class ArbitratorComponent implements OnChanges {
     this.time = 3;
     this.time2 = 3;
     this.count = 3;
-    this.isTrueVal = false;
+    this.isValue = false;
     this.ValChoice = false;
-   }
-
-   ngOnInit() {
-
-    this.choiceOnes$ = this.store.select(state => state.choiceOne.choiceOnes);
    }
 
   scoreOne: number;
@@ -35,12 +31,14 @@ export class ArbitratorComponent implements OnChanges {
   time: number;
   time2: number;
   count: number;
-  isTrueVal: boolean;
+  isValue: boolean;
   ValChoice: boolean;
 
   choiceOnes$: Observable<number>;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit() {
+
+    // this.choiceOnes$ = this.store.select(state => state.choiceOne.choiceOnes);
 
   }
 
@@ -72,12 +70,20 @@ export class ArbitratorComponent implements OnChanges {
           this.time--;
         } else if (this.time === 0) {
           this.chronoSecond();
-
+          this.changeIsValue(1);
           // launche choice of player Two
           // this.isTrueChoice(1);
           clearInterval(timer1);
           }
       }, 1000);
+    }
+  }
+
+  changeIsValue(val) {
+    if (val === 1) {
+      this.isValue = true;
+    } else {
+      this.isValue = false;
     }
   }
 
@@ -105,7 +111,8 @@ export class ArbitratorComponent implements OnChanges {
   }
 
   compareResult() {
-
+    this.valueOne = this.store.selectSnapshot(ChoiceOneState.choiceInfos);
+    this.valueTwo = this.store.selectSnapshot(ChoiceOneState.choiceTowInfo);
     // tslint:disable-next-line: cyclomatic-complexity
     if (this.verif(1)) {
       this.verif(2);
@@ -227,8 +234,6 @@ export class ArbitratorComponent implements OnChanges {
     for (let x = 2; x < 4; x++) {
      select.children[x].classList.add('none');
     }
-
-    console.log();
   }
 
   verif(mode: number) {
