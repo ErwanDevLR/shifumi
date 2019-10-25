@@ -2,6 +2,7 @@
 import { Component, OnChanges,  SimpleChanges , ViewContainerRef, Input } from '@angular/core';
 import { AddChoiceTwo } from '../store/actions/choiceOne.action';
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-player-two',
@@ -20,11 +21,14 @@ export class PlayerTwoComponent implements OnChanges {
               private readonly store: Store) {}
 
   @Input()isValue: boolean;
+  @Input()isReset: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.isValue + ' input');
     if (this.isValue) {
       this.choiceTwo();
+    }
+    if (this.isReset) {
+      this.resetChoice();
     }
   }
 
@@ -44,6 +48,7 @@ export class PlayerTwoComponent implements OnChanges {
      for (let x = 1; x < 4; x++) {
        choice.children[x].classList.add('none');
      }
+
   }
 
   addChoiceTwo(value) {
@@ -54,8 +59,6 @@ export class PlayerTwoComponent implements OnChanges {
 
     // tslint:disable-next-line: max-line-length
     const choice =  this.viewContainerRef.element.nativeElement.children[0].children[1];
-
-    console.log(choice);
 
     const gene = Math.floor(Math.random() * 3);
     // tslint:disable-next-line: prefer-conditional-expression
@@ -74,7 +77,7 @@ export class PlayerTwoComponent implements OnChanges {
     }
 
     // reset the previous choice
-    // this.resetChoice();
+    this.resetChoice();
 
     // display the choice of the player
     choice.children[this.value].classList.remove('none');

@@ -22,6 +22,7 @@ export class ArbitratorComponent implements OnInit {
     this.count = 3;
     this.isValue = false;
     this.ValChoice = false;
+    this.isResetValue = false;
    }
 
   scoreOne: number;
@@ -33,12 +34,11 @@ export class ArbitratorComponent implements OnInit {
   count: number;
   isValue: boolean;
   ValChoice: boolean;
+  isResetValue: boolean;
 
   choiceOnes$: Observable<number>;
 
   ngOnInit() {
-
-    // this.choiceOnes$ = this.store.select(state => state.choiceOne.choiceOnes);
 
   }
 
@@ -71,8 +71,6 @@ export class ArbitratorComponent implements OnInit {
         } else if (this.time === 0) {
           this.chronoSecond();
           this.changeIsValue(1);
-          // launche choice of player Two
-          // this.isTrueChoice(1);
           clearInterval(timer1);
           }
       }, 1000);
@@ -113,6 +111,7 @@ export class ArbitratorComponent implements OnInit {
   compareResult() {
     this.valueOne = this.store.selectSnapshot(ChoiceOneState.choiceInfos);
     this.valueTwo = this.store.selectSnapshot(ChoiceOneState.choiceTowInfo);
+
     // tslint:disable-next-line: cyclomatic-complexity
     if (this.verif(1)) {
       this.verif(2);
@@ -177,10 +176,8 @@ export class ArbitratorComponent implements OnInit {
           this.count--;
         } else if (this.count === 0) {
           console.log('reset');
-
-          // console.log(this.choiceOnes$);
-
           this.resetWinnerIcon();
+          this.isResetValue = true;
           // Launch reset of player two choice
           this.disableOrdinateurChoice(0);
           clearInterval(timer3);
@@ -248,7 +245,6 @@ export class ArbitratorComponent implements OnInit {
          return false;
        }
       } else {
-        // console.log('we got a winner ');
         if (this.scoreOne === 3) {
           // Winner Player One
           select.children[2].classList.remove('none');

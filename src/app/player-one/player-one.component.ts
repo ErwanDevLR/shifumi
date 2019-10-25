@@ -1,5 +1,5 @@
 // tslint:disable-next-line: max-line-length
-import { Component, OnChanges, SimpleChanges, ViewContainerRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, ViewContainerRef, Output, EventEmitter, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { AddChoiceOne } from '../store/actions/choiceOne.action';
 
@@ -20,11 +20,15 @@ export class PlayerOneComponent implements OnChanges {
   // ciseaux = 3
 
   @Output()isChoice: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  @Input()isReset: boolean;
 
   constructor(public viewContainerRef: ViewContainerRef,
               private readonly store: Store) { }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (this.isReset) {
+      this.resetChoice();
+    }
   }
 
   addChoiceOne(value) {

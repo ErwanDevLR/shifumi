@@ -98,15 +98,9 @@
 </div>
 <div class="row">
   <div class="col-md-5 customTAC">
-    <app-player-one (isChoice)="isValueSend($event)" ></app-player-one>
+    <app-player-one (isChoice)="isValueSend($event)" [isReset]="isResetValue"></app-player-one>
   </div>
   <div class="col-md-5 offset-md-2 customTAC">
-    <app-player-two [isValue]="isValue"></app-player-two>
+    <app-player-two [isValue]="isValue" [isReset]="isResetValue"></app-player-two>
   </div>
 </div>
-
-<!-- <span *ngFor="let choice of choiceOnes | async"> -->
-  <!-- <input type="text" value="{{ choice.value }}"> -->
-<!-- </span> -->
-
-{{ choiceOnes$ | async }}
